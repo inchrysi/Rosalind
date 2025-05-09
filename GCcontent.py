@@ -1,12 +1,13 @@
+
 def FASTAinStr(coso):
     sequenza = ""
     with coso as f:
         for riga in f:
             if not riga.startswith(">"):
                 sequenza += riga.strip()
+
+                
     return sequenza
-
-
 
 def GCcontent(seq):
     G = seq.count('G')
