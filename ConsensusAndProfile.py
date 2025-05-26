@@ -13,46 +13,100 @@ def readFASTA(txtfile):
     
     return nomieseq
 
-def consAndProf(txtfile):
+def consAndProf(txtfile): #if seqs have same lenght
     collection = readFASTA(txtfile)
     
     seqs = []
-    
     
     for key in collection:
         item = collection.get(key)
         seqs.append(item)
     
-    apparition = []
+    #to determine profile
+    l = len(seqs[1])
+    
+    apparitionA = [0] * l
+    apparitionC = [0] * l
+    apparitionG = [0] * l
+    apparitionT = [0] * l
     
     for x in seqs:
-        A = []
-        C = []
-        G = []
-        T = []
+        for i in range(len(x)):
+            if x[i] == 'A':
+                apparitionA[i]+= 1
+            if x[i] == 'C':
+                apparitionC[i]+= 1
+            if x[i] == 'G':
+                apparitionG[i]+= 1
+            if x[i] == 'T':
+                apparitionT[i]+= 1
+    ACGT = [apparitionA, apparitionC, apparitionG, apparitionT]
+    
+    print('A:', *apparitionA)
+    print('C:', *apparitionC)
+    print('G:', *apparitionG)
+    print('T:', *apparitionT)
+
+    #to determine consensus
+    column = list(zip(*ACGT))
+    
+    consensus = ''
+    
+    for x in column:
+        massimo = 0
+        if x[0] > massimo:
+            massimo = x[0]
+        if x[1] > massimo:
+            massimo = x[1]
+        if x[2] > massimo:
+            massimo = x[2]
+        if x[3] > massimo:
+            massimo = x[3]
         
-        for i in x:
-            if i == 'A':
-                A.append(1)
-            if i == 'C':
-                C.append(1)
-            if i == 'G':
-                G.append(1)
-            if i == 'T':
-                T.append(1)
-        apparition.append(A)
-        apparition.append(C)
-        apparition.append(G)
-        apparition.append(T)
+        if massimo == x[0]:
+            consensus+= 'A'
+        elif massimo == x[1]:
+            consensus+= 'C'
+        elif massimo == x[2]:
+            consensus+= 'G'
+        elif massimo == x[3]:
+            consensus+= 'T'
+        
             
-    return apparition
-'''
-            if i == 'A':
+    return consensus
+                
+"""
+    A = 0
+    C = 0
+    G = 0
+    T = 0
+    for x in seqs:
+        for i in range(len(x)):
+            if x[i] == 'A':
                 A+= 1
-            if i == 'C':
+            if x[i] == 'C':
                 C+= 1
-            if i == 'G':
+            if x[i] == 'G':
                 G+= 1
-            if i == 'T':
+            if x[i] == 'T':
                 T+= 1
-'''
+                
+                
+    massimo = 0
+    
+    for x in ACGT:
+        for i in range(len(x)):
+            if x[i] > massimo:
+                massimo = x[i]
+                
+    for x in column:
+        massimo = 0
+        if column[0] > massimo:
+            massimo = column[0]
+        if column[1] > massimo:
+            massimo = column[1]
+        if column[2] > massimo:
+            massimo = column[2]
+        if column[3] > massimo:
+            massimo = column[3]
+"""
