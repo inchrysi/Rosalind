@@ -30,6 +30,9 @@ def consAndProf(txtfile): #if seqs have same lenght
     apparitionG = [0] * l
     apparitionT = [0] * l
     
+    
+
+"""
     for x in seqs:
         for i in range(len(x)):
             if x[i] == 'A':
@@ -73,6 +76,7 @@ def consAndProf(txtfile): #if seqs have same lenght
             consensus+= 'T'
         
             
+<<<<<<< Updated upstream
     return consensus
                 
 """
@@ -83,6 +87,11 @@ def consAndProf(txtfile): #if seqs have same lenght
     for x in seqs:
         for i in range(len(x)):
             if x[i] == 'A':
+=======
+    return apparition
+
+            if i == 'A':
+>>>>>>> Stashed changes
                 A+= 1
             if x[i] == 'C':
                 C+= 1
@@ -90,6 +99,7 @@ def consAndProf(txtfile): #if seqs have same lenght
                 G+= 1
             if x[i] == 'T':
                 T+= 1
+<<<<<<< Updated upstream
                 
                 
     massimo = 0
@@ -110,3 +120,6 @@ def consAndProf(txtfile): #if seqs have same lenght
         if column[3] > massimo:
             massimo = column[3]
 """
+=======
+"""
+>>>>>>> Stashed changes
