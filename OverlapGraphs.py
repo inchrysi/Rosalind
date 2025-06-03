@@ -22,16 +22,14 @@ def overlap(txtfile):
         chiavi.append(x)
     
     #3 parametri: uno che scorra per ogni chiave, uno che prenda l'estremo sx, l'altro che prende estremo dx
-    for i in range(len(collection)):
-        item1 = collection.get(chiavi[i])
-        
-        for j in range(len(collection) + 1):
-            while j < len(collection):
-                item2 = collection.get(chiavi[j])
-                
-                for k in range(0, int(len(item1))):
-                    if item1[0 : k] == item2[0 : k]:
-                        seqOverlaps.append(item1[0 : k])
+    for i in range(len(collection) - 1):
+        if i < len(collection):
+            item1 = collection.get(chiavi[i])
+            item2 = collection.get(chiavi[i + 1])
+                    
+            for k in range(0, int(len(item1))):
+                if item1[0 : k] == item2[0 : k]:
+                    seqOverlaps.append(item1[0 : k])
     
     return seqOverlaps
 
